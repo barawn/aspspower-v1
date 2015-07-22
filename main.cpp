@@ -244,7 +244,7 @@ uint16_t read_tmp422(uint8_t idx) {
 void handle_sensors(uint8_t cmd, uint8_t arg) {
 	bool readable = (cmd == 'H');
 	// rebase to readable characters.
-	if (readable) arg = arg - 0x20;
+	if (arg >= 'A') arg -= ('A' - '9' + 1);
 	uint8_t onboard = (arg & 0x7);
 	uint8_t temps = (arg>>3) & 0x3;
 	bool vin_wakeup = ((arg & 0x60) == 0x40);
